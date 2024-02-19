@@ -10,6 +10,7 @@ import Entity from '@/database/models/entity'
 import { HydratedDocument } from 'mongoose'
 import AgreementFile from '@/database/models/file'
 import { AgreementFormData } from '@/app/doctors/[id]/form_agreement'
+import connectMongoose from '@/database/connection'
 
 
 const createAgreement = async (doctorId: string, agreementType: string|null) => {
@@ -335,6 +336,7 @@ export const GET = async (
   { params }: { params: { slug: string } }
 ) => {
   try {
+    await connectMongoose()
     let slug = params.slug
     let headersList = headers()
     if(slug === 'new') {
@@ -375,6 +377,7 @@ export const POST = async (
   { params }: { params: {slug: string }}
 ) => {
   try {
+    await connectMongoose()
     
     let slug = params.slug
     let headersList = headers()

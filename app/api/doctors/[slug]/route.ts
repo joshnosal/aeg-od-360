@@ -1,3 +1,4 @@
+import connectMongoose from '@/database/connection'
 import Doctor, { DbDoctor, IDoctor } from '@/database/models/doctor'
 import { sendErrorToClient } from '@/utils/error_handler'
 import { headers } from 'next/headers'
@@ -17,6 +18,7 @@ export const POST = async (
   { params }: { params: {slug: string }}
 ) => {
   try {
+    await connectMongoose()
     let data = await req.json()
     let slug = params.slug
 
