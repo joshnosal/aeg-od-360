@@ -15,10 +15,12 @@ export interface IDoctor {
   personalZip: string
   employer: string
   favorite_movie: string
+  updatedAt: string
 }
 
-export interface DbDoctor extends Omit<IDoctor, 'employer'> {
+export interface DbDoctor extends Omit<IDoctor, 'employer'|'updatedAt'> {
   employer: Types.ObjectId
+  updatedAt: Date
 }
 
 const doctorSchema = new Schema<DbDoctor, Model<DbDoctor>>({
